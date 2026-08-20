@@ -1,0 +1,12 @@
+# Backend
+.env
+__pycache__/
+*.db
+
+# Frontend
+node_modules/
+.next/
+
+# Massive ML Models (Too big for GitHub/Render)
+agronxt_backend/agronxt-backend/models/yield_predictor_model.pkl
+agronxt_backend/agronxt-backend/models/season_advisor_model.pkl

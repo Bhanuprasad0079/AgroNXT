@@ -1,0 +1,32 @@
+// src/middleware.ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  // Check if the user has an auth token stored in their cookies
+  const token = request.cookies.get('agronxt_token')?.value;
+
+  // Define the routes that strictly require authentication
+  const protectedPaths = ['/dashboard', '/tools', '/community'];
+  const isProtected = protectedPaths.some(path => request.nextUrl.pathname.startsWith(path));
+
+  // If the route is protected and there is no token, kick them to login
+  if (isProtected && !token) {
+    const loginUrl = new URL('/login', request.url);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  // If they are logged in and try to visit login/register, send them to dashboard
+  const authPaths = ['/login', '/register'];
+  const isAuthPath = authPaths.some(path => request.nextUrl.pathname.startsWith(path));
+  if (isAuthPath && token) {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
+
+  return NextResponse.next();
+}
+
+// Tell Next.js which routes to run this middleware on
+export const config = {
+  matcher: ['/dashboard/:path*', '/tools/:path*', '/community/:path*', '/login', '/register'],
+};

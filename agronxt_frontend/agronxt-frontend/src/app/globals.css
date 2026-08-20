@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+/* =========================================================
+   1. THE SMOOTH THEME TRANSITION ENGINE
+   This forces every element to fade smoothly when toggling themes
+========================================================= */
+@layer base {
+  *, ::before, ::after {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 100ms;
+  }
+}
+
+/* =========================================================
+   2. GLOBAL DARK MODE POLISH (Inputs & Contrast)
+========================================================= */
+@layer base {
+  /* Fix unreadable input fields in dark mode */
+  input, textarea, select {
+    @apply dark:bg-[#1c2120] dark:text-[#eef1ef] dark:border-white/10 dark:placeholder-white/40;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    @apply dark:ring-[#86d995]/50 dark:border-[#86d995];
+  }
+
+  /* Boost base text readability in dark mode */
+  .text-outline {
+    @apply dark:text-[#aab4aa]; 
+  }
+  .text-on-surface-variant {
+    @apply dark:text-[#bfc9bc];
+  }
+}
+
+/* =========================================================
+   3. EDITORIAL DESIGN SYSTEM UTILITIES
+========================================================= */
+@layer utilities {
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+  
+  .font-editorial {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.04em;
+  }
+
+  .growth-fragment {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
+    border-top-left-radius: 0px !important;
+  }
+
+  .asymmetric-mask {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 2rem 100%);
+  }
+
+  /* Standard Light Mode Shadow */
+  .editorial-shadow {
+    box-shadow: 0px 12px 32px rgba(24, 28, 27, 0.04);
+  }
+}
+
+/* Premium Dark Mode Overrides */
+.dark .editorial-shadow {
+  /* Gives cards a subtle "lifted glass" look instead of a muddy black shadow */
+  box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.6), inset 0px 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.dark .growth-fragment {
+  filter: brightness(0.85) contrast(1.1);
+}
+
+.dark .map-overlay {
+  background: rgba(13, 18, 17, 0.85);
+}

@@ -1,0 +1,26 @@
+{
+  "Kharif": {
+    "months": "June \u2013 November",
+    "crops": "Rice, Maize, Cotton, Soybean, Bajra"
+  },
+  "Rabi": {
+    "months": "November \u2013 April",
+    "crops": "Wheat, Chickpea, Mustard, Lentil, Peas"
+  },
+  "Zaid": {
+    "months": "March \u2013 June",
+    "crops": "Watermelon, Cucumber, Bitter Gourd"
+  },
+  "Whole Year": {
+    "months": "All year",
+    "crops": "Sugarcane, Banana, Coconut, Coffee"
+  },
+  "Summer": {
+    "months": "March \u2013 June",
+    "crops": "Mango, Groundnut"
+  },
+  "Winter": {
+    "months": "October \u2013 February",
+    "crops": "Potato, Onion, Garlic"
+  }
+}
