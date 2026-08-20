@@ -41,10 +41,10 @@ export default function DashboardOverview() {
 
     const loadData = async () => {
       try {
-        const userRes = await fetch("http://localhost:8000/users/me", { headers: { Authorization: `Bearer ${token}` } });
+        const userRes = await fetch("https://agronxt.onrender.com/users/me", { headers: { Authorization: `Bearer ${token}` } });
         if (userRes.ok) { const userData = await userRes.json(); setUserName(userData.full_name.split(" ")[0]); }
 
-        const profileRes = await fetch("http://localhost:8000/farm-profile", { headers: { Authorization: `Bearer ${token}` } });
+        const profileRes = await fetch("https://agronxt.onrender.com/farm-profile", { headers: { Authorization: `Bearer ${token}` } });
         if (profileRes.ok) {
           const profileData = await profileRes.json();
           if (profileData.status === "ok") {
@@ -52,7 +52,7 @@ export default function DashboardOverview() {
             
             const loc = profileData.data.city || profileData.data.district;
             if (loc) {
-              const weatherRes = await fetch("http://localhost:8000/weather", {
+              const weatherRes = await fetch("https://agronxt.onrender.com/weather", {
                 method: "POST", headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ location: loc })
               });
@@ -75,7 +75,7 @@ export default function DashboardOverview() {
   useEffect(() => {
     if (activeSector && !roiCache[activeSector.id]) {
       setIsRoiLoading(true);
-      fetch("http://localhost:8000/calculate-roi", {
+      fetch("https://agronxt.onrender.com/calculate-roi", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ crop: activeSector.crop, acres: parseFloat(activeSector.acreage) || 1 })
       })

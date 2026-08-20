@@ -105,7 +105,7 @@ export default function ToolsPage() {
     setError("");
     
     try {
-      const res = await fetch("http://localhost:8000/weather/advanced", {
+      const res = await fetch("https://agronxt.onrender.com/weather/advanced", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ location: form.location })
@@ -161,7 +161,7 @@ export default function ToolsPage() {
       const lat = geoData.results[0].latitude;
       const lng = geoData.results[0].longitude;
 
-      const res = await fetch("http://localhost:8000/soil/advanced", {
+      const res = await fetch("https://agronxt.onrender.com/soil/advanced", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ latitude: lat, longitude: lng }) 

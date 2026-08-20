@@ -30,7 +30,7 @@ export default function AdminDashboard() {
 
       try {
         // 1. Verify this is the admin
-        const meRes = await fetch("http://localhost:8000/users/me", {
+        const meRes = await fetch("https://agronxt.onrender.com/users/me", {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -54,7 +54,7 @@ export default function AdminDashboard() {
         }
 
         // 2. Fetch Stats
-        const statsRes = await fetch("http://localhost:8000/admin/stats", {
+        const statsRes = await fetch("https://agronxt.onrender.com/admin/stats", {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (statsRes.ok) {
@@ -63,7 +63,7 @@ export default function AdminDashboard() {
         }
 
         // 3. Fetch User Directory
-        const usersRes = await fetch("http://localhost:8000/admin/users", {
+        const usersRes = await fetch("https://agronxt.onrender.com/admin/users", {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (usersRes.ok) {

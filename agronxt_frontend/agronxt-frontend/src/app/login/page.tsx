@@ -59,7 +59,7 @@ export default function LoginPage() {
       apiFormData.append("username", identity);
       apiFormData.append("password", password);
 
-      const res = await fetch("http://localhost:8000/login", {
+      const res = await fetch("https://agronxt.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: apiFormData,

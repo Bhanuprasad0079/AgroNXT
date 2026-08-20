@@ -59,7 +59,7 @@ export default function AccountPage() {
           throw new Error("No active session found. Please log in again.");
         }
 
-        const res = await fetch("http://localhost:8000/users/me", {
+        const res = await fetch("https://agronxt.onrender.com/users/me", {
           headers: { "Authorization": `Bearer ${token}` }
         });
         
@@ -99,7 +99,7 @@ export default function AccountPage() {
 
     try {
       const token = getCookie("agronxt_token");
-      const res = await fetch("http://localhost:8000/users/me", {
+      const res = await fetch("https://agronxt.onrender.com/users/me", {
         method: "PUT", 
         headers: {
           "Content-Type": "application/json",

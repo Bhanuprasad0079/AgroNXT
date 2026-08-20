@@ -28,7 +28,7 @@ export default function Navbar() {
     // Securely check session on load
     const token = document.cookie.split('; ').find(row => row.startsWith('agronxt_token='))?.split('=')[1];
     if (token) {
-      fetch("http://localhost:8000/users/me", {
+      fetch("https://agronxt.onrender.com/users/me", {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {

@@ -4,7 +4,7 @@
 //  Backend runs at http://localhost:5000
 // ─────────────────────────────────────────────────────────────
 
-const BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+const BASE = process.env.NEXT_PUBLIC_API_URL || 'https://agronxt.onrender.com';
 
 async function post(endpoint, body) {
   const res = await fetch(`${BASE}${endpoint}`, {

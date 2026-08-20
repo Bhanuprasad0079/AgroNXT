@@ -47,7 +47,7 @@ export default function WeatherPage() {
         let activeLng = locationCoords.lng;
 
         if (token) {
-          const profileRes = await fetch("http://localhost:8000/farm-profile", { 
+          const profileRes = await fetch("https://agronxt.onrender.com/farm-profile", { 
             headers: { Authorization: `Bearer ${token}` } 
           });
           if (profileRes.ok) {
@@ -59,7 +59,7 @@ export default function WeatherPage() {
         }
 
         // 🔥 ARCHITECTURE FIX: Fetching from your Python Backend instead of directly
-        const res = await fetch("http://localhost:8000/weather/advanced", {
+        const res = await fetch("https://agronxt.onrender.com/weather/advanced", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ latitude: activeLat, longitude: activeLng })

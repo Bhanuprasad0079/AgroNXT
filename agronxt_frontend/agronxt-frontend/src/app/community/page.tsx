@@ -80,18 +80,18 @@ export default function CommunityPage() {
     
     if (cookieToken) {
       setToken(cookieToken);
-      fetch("http://localhost:8000/users/me", { headers: { Authorization: `Bearer ${cookieToken}` } })
+      fetch("https://agronxt.onrender.com/users/me", { headers: { Authorization: `Bearer ${cookieToken}` } })
         .then(res => res.json())
         .then(data => setCurrentUser(data));
 
-      fetch("http://localhost:8000/community/posts", { headers: { Authorization: `Bearer ${cookieToken}` } })
+      fetch("https://agronxt.onrender.com/community/posts", { headers: { Authorization: `Bearer ${cookieToken}` } })
         .then(res => res.json())
         .then(data => { if(data.status === "ok") setPosts(data.data); setIsPostsLoading(false); });
     } else {
       setIsPostsLoading(false);
     }
 
-    fetch("http://localhost:8000/mandi-prices")
+    fetch("https://agronxt.onrender.com/mandi-prices")
       .then(res => res.json())
       .then(data => { if(data.status === "ok") setMandiPrices(data.data); });
   }, []);
@@ -119,7 +119,7 @@ export default function CommunityPage() {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/community/posts", {
+      const res = await fetch("https://agronxt.onrender.com/community/posts", {
         method: "POST", 
         headers: { "Authorization": `Bearer ${token}` }, 
         body: formData
@@ -129,7 +129,7 @@ export default function CommunityPage() {
         setNewPost({ title: "", content: "", topic: "General Discussion", state: "Odisha", district: "" });
         setSelectedImage(null);
         setImagePreview(null);
-        const fetchRes = await fetch("http://localhost:8000/community/posts", { headers: { Authorization: `Bearer ${token}` } });
+        const fetchRes = await fetch("https://agronxt.onrender.com/community/posts", { headers: { Authorization: `Bearer ${token}` } });
         const data = await fetchRes.json();
         setPosts(data.data);
       }
@@ -139,7 +139,7 @@ export default function CommunityPage() {
   const deletePost = async (postId: number) => {
     if (!confirm("Are you sure you want to permanently delete this discussion?")) return;
     try {
-      const res = await fetch(`http://localhost:8000/community/posts/${postId}`, {
+      const res = await fetch(`https://agronxt.onrender.com/community/posts/${postId}`, {
         method: "DELETE", headers: { "Authorization": `Bearer ${token}` }
       });
       if (res.ok) setPosts(posts.filter(p => p.id !== postId));
@@ -149,7 +149,7 @@ export default function CommunityPage() {
   const handleLike = async (postId: number) => {
     if (!token) return;
     try {
-      const res = await fetch(`http://localhost:8000/community/posts/${postId}/like`, {
+      const res = await fetch(`https://agronxt.onrender.com/community/posts/${postId}/like`, {
         method: "POST", headers: { "Authorization": `Bearer ${token}` }
       });
       const data = await res.json();
@@ -162,7 +162,7 @@ export default function CommunityPage() {
     setExpandedPost(postId);
     setPostComments([]);
     try {
-      const res = await fetch(`http://localhost:8000/community/posts/${postId}/comments`);
+      const res = await fetch(`https://agronxt.onrender.com/community/posts/${postId}/comments`);
       const data = await res.json();
       if (res.ok) setPostComments(data.data);
     } catch (err) { console.error(err); }
@@ -171,13 +171,13 @@ export default function CommunityPage() {
   const submitComment = async (postId: number) => {
     if (!token || !newComment.trim()) return;
     try {
-      const res = await fetch(`http://localhost:8000/community/posts/${postId}/comments`, {
+      const res = await fetch(`https://agronxt.onrender.com/community/posts/${postId}/comments`, {
         method: "POST", headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify({ content: newComment })
       });
       if (res.ok) {
         setNewComment("");
-        const cRes = await fetch(`http://localhost:8000/community/posts/${postId}/comments`);
+        const cRes = await fetch(`https://agronxt.onrender.com/community/posts/${postId}/comments`);
         const data = await cRes.json();
         setPostComments(data.data);
         setPosts(posts.map(p => p.id === postId ? { ...p, comments_count: p.comments_count + 1 } : p));
@@ -188,7 +188,7 @@ export default function CommunityPage() {
   const deleteComment = async (postId: number, commentId: number) => {
     if (!confirm("Delete this reply?")) return;
     try {
-      const res = await fetch(`http://localhost:8000/community/comments/${commentId}`, {
+      const res = await fetch(`https://agronxt.onrender.com/community/comments/${commentId}`, {
         method: "DELETE", headers: { "Authorization": `Bearer ${token}` }
       });
       if (res.ok) {

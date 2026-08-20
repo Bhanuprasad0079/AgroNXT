@@ -60,7 +60,7 @@ export default function ForgotPasswordPage() {
     setTargetEmail(email);
 
     try {
-      const res = await fetch("http://localhost:8000/forgot-password", {
+      const res = await fetch("https://agronxt.onrender.com/forgot-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email }),
@@ -138,7 +138,7 @@ export default function ForgotPasswordPage() {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/reset-password", {
+      const res = await fetch("https://agronxt.onrender.com/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
