@@ -9,6 +9,7 @@ The platform leverages supervised predictive modeling, relational cloud database
 ## Live Links & Deployment
 
 - **Live Application (Frontend):** https://agro-nxt.vercel.app/
+- **API Documentation & Swagger UI (Backend):** https://agronxt.onrender.com/docs
 - **Project Repository:** https://github.com/Bhanuprasad0079/AgroNXT
 
 ---
