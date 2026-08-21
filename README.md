@@ -139,4 +139,4 @@ CLOUDINARY_API_SECRET=your_api_secret
 SENDER_EMAIL=your_smtp_email
 SENDER_PASSWORD=your_smtp_app_password
 
-NEXT_PUBLIC_API_URL=[https://your-deployed-backend-url.onrender.com](https://your-deployed-backend-url.onrender.com)
+NEXT_PUBLIC_API_URL= https://agronxt.onrender.com/
